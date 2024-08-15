@@ -1,0 +1,14 @@
+Components      |       ESP32 PINS
+                |
+OLED VCC        |       3V3
+OLED GND        |       GND
+OLED SCL        |       GPIO 22 / I2C SCL
+OLED SDA        |       GPIO 21 / I2C SDA
+                |
+SRF05 VCC       |       5V
+SRF05 TRIG      |       GPIO 5
+SRF05 ECHO      |       GPIO 15
+SRF05 GND       |       GND
+                |
+BUZZER +        |       GPIO 32
+BUZZER -        |       GND
