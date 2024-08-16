@@ -4,6 +4,7 @@
 #include <Adafruit_SH110X.h>
 #include <Wire.h>
 #include <WiFi.h>
+#include <distance_detect.h>
 
 #define I2C_ADDRESS 0x3C
 #define SCREEN_WIDTH 128
@@ -20,32 +21,53 @@ int myFunction(int, int);
 
 void setup() {
   // put your setup code here, to run once:
+  pinMode(TRIG, OUTPUT);
+  pinMode(ECHO, INPUT);
+
   display.begin(I2C_ADDRESS, true);
+  display.display();
+  display.clearDisplay();
+  
+
 }
 
+void printText(int x, int y, String text){
+  display.setCursor(x, y);
+  display.print(text);
+}
 
+void printText(int x, int y, int value){
+  display.setCursor(x, y);
+  display.print(value);
+}
 
-void status_display(int distance, int lower_bound, int upper_bound){
-  delay(50);
+void status_display(float distance, int lower_bound, int upper_bound){
+  delay(10);
+  display.clearDisplay();
   display.setTextColor(SH110X_WHITE);
   display.setTextSize(1);
   
-  display.setCursor(8, 48);
-  display.print("Ideal:");
+  display.drawFastHLine(1, 12, 128, SH110X_WHITE);
+  display.drawFastHLine(1, 52, 128, SH110X_WHITE);
+
+  printText(8, 56, "Ideal:");
   
-  display.setCursor(20, 48);
-  display.print(lower_bound);
+  printText(50, 56, lower_bound);
 
-  display.setCursor(30, 48);
-  display.print(upper_bound);
+  printText(63, 56, "-");
+  printText(70, 56, upper_bound);
 
-  display.setCursor(40, 48);
-  display.print("cm");
+  printText(90, 56, "cm");
+
+  printText(10, 0, "Distance: ");
+
+  printText(70, 0, static_cast<int>(round(distance)) );
 }
+
 
 void loop() {
   // put your main code here, to run repeatedly:
-  status_display(65, 50, 66);
+  status_display(DetectDistance(), 50, 66);
   display.display();
 }
 
