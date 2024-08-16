@@ -18,3 +18,5 @@ Components:
 - A buzzer to create sound
 
 Wiring.txt will tell you how to connect the pins.
+
+Btw, I also implement this to create a project that play music while you are working to motivate yourself.

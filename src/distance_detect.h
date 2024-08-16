@@ -4,5 +4,4 @@
 #define TRIG 5
 #define ECHO 15
 
-
-float DetectDistance();
+float DetectDistance(bool &safe_status, int lower_bound, int upper_bound);
