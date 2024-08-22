@@ -39,46 +39,13 @@ void printText(int x, int y, int value, int s =1){
 void status_display(float distance, int lower_bound, int upper_bound){
   delay(10);
   
-  /*
-  display.clearDisplay();
-  display.setTextColor(SH110X_WHITE);
-  
-  display.drawFastHLine(1, 12, 128, SH110X_WHITE);
-  display.drawFastHLine(1, 52, 128, SH110X_WHITE);
 
-  printText(10, 0, "Distance: ");
-  printText(70, 0, static_cast<int>(round(distance)) );
-
-  printText(10, 18, "Status:");
-  if (distance < lower_bound){
-    printText(10, 30, "TOO CLOSE", 2);
-  }
-  else if (distance > upper_bound){
-    display.setTextSize(2);
-    printText(10, 30, "TOO FAR", 2);
-  }
-  else{
-    display.setTextSize(2);
-    printText(10, 30, "SAFE", 2);
-  }
-
-  printText(8, 56, "Ideal:");
-  
-  printText(50, 56, lower_bound);
-
-  printText(63, 56, "-");
-  printText(70, 56, upper_bound);
-
-  printText(90, 56, "cm");
-
-  */
   display.drawFastHLine(1, 12, 128, SH110X_WHITE);
   
 
   display.clearDisplay();
   display.setTextColor(SH110X_WHITE);
   
- 
 
   if (distance < lower_bound || distance > upper_bound){
     printText(16, 24, "WORK NOW", 2);
@@ -107,7 +74,7 @@ void MusicHandleCode( void * pvParameters ) {
   for(;;){
     while(i < 338 && SafeStatus){
       tone(BUZZER, Notes[i], 50);
-      delay(80 *1.3);
+      delay(55 *1.3);
       noTone(BUZZER);
       i++;
     };
